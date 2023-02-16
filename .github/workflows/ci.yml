@@ -24,3 +24,6 @@ jobs:
 
     - name: Check Terraform formatting
       uses: dflook/terraform-fmt-check@v1
+      with:
+        path: .
+

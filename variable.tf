@@ -65,4 +65,3 @@ variable "instance_volume_type" {
   type    = string
   default = "gp2"
 }
-

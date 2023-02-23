@@ -58,8 +58,7 @@ variable "app_port" {
 
 variable "ami" {
   type    = string
-  default = "ami-0598a0222c73b513a"
-
+  default = "ami-0d1de20a33ba40a99"
 }
 
 variable "instance_volume_type" {

@@ -34,3 +34,4 @@ resource "aws_security_group" "application" {
 
   vpc_id = aws_vpc.vpc.id
 }
+

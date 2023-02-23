@@ -26,4 +26,3 @@ jobs:
       uses: dflook/terraform-fmt-check@v1
       with:
         path: .
-

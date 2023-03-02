@@ -58,10 +58,13 @@ variable "app_port" {
 
 variable "ami" {
   type    = string
-  default = "ami-0d1de20a33ba40a99"
+  default = "ami-044bf0a9d4d764dc7"
 }
 
 variable "instance_volume_type" {
   type    = string
   default = "gp2"
+}
+variable "S3Bucket" {
+  default = "my-bucket"
 }

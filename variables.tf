@@ -81,14 +81,6 @@ variable "db_name" {
   default = "csye6225"
 }
 
-variable "AWS_ACCESS_KEY_ID" {
-  type = string
-}
-
-variable "AWS_SECRET_ACCESS_KEY" {
-  type = string
-}
-
 locals {
   public_subnets  = [for i in range(1, var.public_subnet_count + 1) : cidrsubnet(var.vpc_cidr_block, 8, i)]
   private_subnets = [for i in range(1, var.private_subnet_count + 1) : cidrsubnet(var.vpc_cidr_block, 8, i + var.private_subnet_count)]

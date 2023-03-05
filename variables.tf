@@ -1,4 +1,3 @@
-
 variable "region" {
   type        = string
   description = "AWS region to use"
@@ -49,7 +48,7 @@ variable "instance_volume_type" {
 
 variable "db_engine" {
   type    = string
-  default = "mysql"
+  default = "postgres"
 }
 
 variable "db_instance" {

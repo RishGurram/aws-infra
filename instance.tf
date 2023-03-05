@@ -22,15 +22,12 @@ resource "aws_instance" "ec2_instance" {
     After=network.target
 
     [Service]
-    Environment="DB_HOST=${aws_db_instance.main.address}"
-    Environment="DB_USER=${aws_db_instance.main.username}"
-    Environment="DB_PASSWORD=${aws_db_instance.main.password}"
-    Environment="DB_DATABASE=${aws_db_instance.main.db_name}"
+    Environment="DATABASE_URL=postgresql://${aws_db_instance.main.username}:${aws_db_instance.main.password}@${aws_db_instance.main.address}:5432/${aws_db_instance.main.db_name}"
     Environment="S3_BUCKET_NAME=${aws_s3_bucket.private.id}"
     Type=simple
     User=ec2-user
     WorkingDirectory=/home/ec2-user/webapp
-    ExecStart=/usr/bin/uvicorn main:app --reload --workers 4 --host 0.0.0.0 --port 8001
+    ExecStart=/home/ec2-user/.local/bin/uvicorn main:app --reload --workers 4 --host 0.0.0.0 --port 8001
     Restart=on-failure
     [Install]
     WantedBy=multi-user.target" > /etc/systemd/system/webapp.service

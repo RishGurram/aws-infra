@@ -40,3 +40,12 @@ resource "aws_iam_instance_profile" "EC2-CSYE6225_instance_profile" {
   name = "EC2-CSYE6225_Role_Instance_profile"
   role = aws_iam_role.EC2_CSYE6225.name
 }
+
+resource "aws_route53_record" "myDNSRecord" {
+  zone_id = var.zone_id
+  name    = var.domain_name
+  type    = "A"
+  ttl     = 60
+
+  records = [aws_instance.ec2_instance.public_ip]
+}

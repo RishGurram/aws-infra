@@ -84,3 +84,11 @@ locals {
   public_subnets  = [for i in range(1, var.public_subnet_count + 1) : cidrsubnet(var.vpc_cidr_block, 8, i)]
   private_subnets = [for i in range(1, var.private_subnet_count + 1) : cidrsubnet(var.vpc_cidr_block, 8, i + var.private_subnet_count)]
 }
+
+variable "zone_id" {
+  type = string
+}
+
+variable "domain_name" {
+  type = string
+}

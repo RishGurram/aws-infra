@@ -69,7 +69,7 @@ resource "aws_iam_policy" "CloudWatch" {
         ],
         Resource = [
           "arn:aws:ssm:::parameter/AmazonCloudWatch-*"
-          ]
+        ]
       }
     ]
   })

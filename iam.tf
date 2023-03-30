@@ -24,9 +24,7 @@ resource "aws_iam_policy" "WebAppS3" {
         Action = [
           "s3:GetObject",
           "s3:PutObject",
-          "s3:DeleteObject",
-          "s3:PutObjectAcl",
-          "s3:GetObjectAcl"
+          "s3:DeleteObject"
         ],
         Effect = "Allow",
         Resource = [
@@ -40,5 +38,44 @@ resource "aws_iam_policy" "WebAppS3" {
 
 resource "aws_iam_role_policy_attachment" "WebAppS3_policy_attachment" {
   policy_arn = aws_iam_policy.WebAppS3.arn
+  role       = aws_iam_role.EC2_CSYE6225.name
+}
+resource "aws_iam_policy" "CloudWatch" {
+  name = "CloudWatch"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "cloudwatch:PutMetricData",
+          "ec2:DescribeVolumes",
+          "ec2:DescribeTags",
+          "logs:PutLogEvents",
+          "logs:DescribeLogStreams",
+          "logs:DescribeLogGroups",
+          "logs:CreateLogStream",
+          "logs:CreateLogGroup"
+        ],
+        Effect = "Allow"
+        Resource = [
+          "*"
+        ]
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "ssm:GetParameter"
+        ],
+        Resource = [
+          "arn:aws:ssm:::parameter/AmazonCloudWatch-*"
+          ]
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "CloudWatch_policy_attachment" {
+  policy_arn = aws_iam_policy.CloudWatch.arn
   role       = aws_iam_role.EC2_CSYE6225.name
 }

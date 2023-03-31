@@ -40,42 +40,8 @@ resource "aws_iam_role_policy_attachment" "WebAppS3_policy_attachment" {
   policy_arn = aws_iam_policy.WebAppS3.arn
   role       = aws_iam_role.EC2_CSYE6225.name
 }
-resource "aws_iam_policy" "CloudWatch" {
-  name = "CloudWatch"
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action = [
-          "cloudwatch:PutMetricData",
-          "ec2:DescribeVolumes",
-          "ec2:DescribeTags",
-          "logs:PutLogEvents",
-          "logs:DescribeLogStreams",
-          "logs:DescribeLogGroups",
-          "logs:CreateLogStream",
-          "logs:CreateLogGroup"
-        ],
-        Effect = "Allow"
-        Resource = [
-          "*"
-        ]
-      },
-      {
-        Effect = "Allow"
-        Action = [
-          "ssm:GetParameter"
-        ],
-        Resource = [
-          "arn:aws:ssm:::parameter/AmazonCloudWatch-*"
-        ]
-      }
-    ]
-  })
-}
 
 resource "aws_iam_role_policy_attachment" "CloudWatch_policy_attachment" {
-  policy_arn = aws_iam_policy.CloudWatch.arn
+  policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
   role       = aws_iam_role.EC2_CSYE6225.name
 }

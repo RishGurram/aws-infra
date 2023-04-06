@@ -15,7 +15,17 @@ create terraform.tfvars file and set the following variables.
    3. private_subnet_count
    4. vpc_cidr_block
    5. region
-   6. create_cidr
+   6. instance_type
+   7. instance_volume_size
+   8. app_port 
+   9.ami_id
+   10.instance_volume_type
+   11.db_engine 
+   12.db_password 
+   13.domain_name 
+   14.zone_id
+   15.key_name
+   16.ami_owner
 
 
 terraform init- Run the terraform init command to initialize the Terraform configuration file.

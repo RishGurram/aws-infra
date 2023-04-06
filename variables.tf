@@ -92,3 +92,9 @@ variable "zone_id" {
 variable "domain_name" {
   type = string
 }
+variable "key_name" {
+  type = string
+}
+variable "ami_owner" {
+  type = number
+}

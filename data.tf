@@ -10,6 +10,6 @@ data "template_file" "userdata" {
 }
 
 data "aws_ami" "custom_ami" {
-  owners      = [var.ami_owner]
-  most_recent = true
+  executable_users = ["self"]
+  most_recent      = true
 }

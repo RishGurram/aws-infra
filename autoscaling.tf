@@ -15,11 +15,13 @@ resource "aws_autoscaling_group" "asg" {
   ]
   vpc_zone_identifier = [for subnet in aws_subnet.public_subnets : subnet.id]
 
-  min_size          = 1
-  max_size          = 3
-  desired_capacity  = 1
-  health_check_type = "EC2"
-  default_cooldown  = 60
+  min_size                  = 1
+  max_size                  = 3
+  desired_capacity          = 1
+  health_check_grace_period = 50
+  health_check_type         = "EC2"
+  default_cooldown          = 60
+  wait_for_capacity_timeout = "5m"
 }
 
 resource "aws_autoscaling_policy" "scaleup_policy" {

@@ -25,17 +25,25 @@ resource "aws_lb_target_group" "target_group" {
     unhealthy_threshold = 2
     timeout             = 5
     interval            = 30
-    path                = "/healthz/"
+    path                = "/healthz"
     port                = "8000"
     protocol            = "HTTP"
   }
 }
 
+data "aws_acm_certificate" "issued" {
+  domain   = var.domain_name
+  statuses = ["ISSUED"]
+
+}
+
 # Attach the target group to the Application Load Balancer
 resource "aws_lb_listener" "alb_listener" {
   load_balancer_arn = aws_lb.application_load_balancer.arn
-  port              = 80
-  protocol          = "HTTP"
+  port              = 443
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  protocol          = "HTTPS"
+  certificate_arn   = data.aws_acm_certificate.issued.arn
 
   default_action {
     type             = "forward"

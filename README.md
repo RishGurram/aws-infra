@@ -18,7 +18,7 @@ create terraform.tfvars file and set the following variables.
    6. instance_type
    7. instance_volume_size
    8. app_port 
-   9.ami_id
+   9. ami_id
    10.instance_volume_type
    11.db_engine 
    12.db_password 
@@ -35,3 +35,5 @@ terraform plan- Run the terraform plan command to see a preview of the resources
 terraform apply- Run the terraform apply command to create the resources.
 
 terraform destroy- After you are finished, run the terraform destroy command to delete the resources.
+
+Command to import certificate - aws acm import-certificate --certificate fileb://Certificate.pem --certificate-chain fileb://CertificateChain.pem --private-key fileb://PrivateKey.pem

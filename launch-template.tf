@@ -25,9 +25,11 @@ resource "aws_launch_template" "auto_scaling_template" {
       volume_size           = var.instance_volume_size
       delete_on_termination = true
       volume_type           = var.instance_volume_type
+      kms_key_id            = aws_kms_key.EBSKmsKey.arn
+      encrypted             = true
     }
   }
-
-
+  lifecycle {
+    create_before_destroy = true
+  }
 }
-
